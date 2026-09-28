@@ -148,7 +148,7 @@ export default function Hero() {
                     <motion.div className="hero__actions" variants={item}>
                         <a
                             className="btn-primary"
-                            href="/resume.pdf"
+                            href="/C2K231253_NeerajKharde_Resume.pdf"
                             download="Neeraj_Kharde_Resume.pdf"
                         >
                             <FiDownload size={15} />
