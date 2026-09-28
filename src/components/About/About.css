@@ -1,0 +1,258 @@
+/* ============================================================
+   ABOUT — Bold, Crazy, Statement Layout
+   ============================================================ */
+
+.ab {
+    position: relative;
+    z-index: 10;
+    overflow: hidden;
+    padding-bottom: 140px;
+}
+
+/* ══════════════════════════════════════════
+   TOP SECTION
+══════════════════════════════════════════ */
+.ab__top {
+    position: relative;
+    padding: 160px var(--s8) 100px;
+    overflow: hidden;
+}
+
+/* Giant ghost word behind everything */
+.ab__bg-word {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -52%);
+    font-family: var(--font-sans);
+    font-size: clamp(9rem, 20vw, 18rem);
+    font-weight: 900;
+    letter-spacing: -0.05em;
+    background: linear-gradient(180deg,
+            rgba(255, 255, 255, 0.04) 0%,
+            transparent 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    pointer-events: none;
+    user-select: none;
+    white-space: nowrap;
+    z-index: 0;
+}
+
+/* Two-column: heading left, bio right */
+.ab__top-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 1140px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+}
+
+/* BIG heading */
+.ab__heading {
+    font-family: var(--font-sans);
+    font-size: clamp(3.8rem, 7vw, 6.5rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1.0;
+    color: var(--text-primary);
+}
+
+.ab__heading em {
+    font-style: normal;
+    background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-purple) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Bio text */
+.ab__bio-block {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding-top: 8px;
+}
+
+.ab__bio {
+    font-family: var(--font-sans);
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.75);
+    font-weight: 300;
+}
+
+.ab__bio strong {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.ab__tagline {
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--accent-blue);
+    letter-spacing: 0.01em;
+    line-height: 1.5;
+}
+
+/* ══════════════════════════════════════════
+   TRAITS SECTION
+══════════════════════════════════════════ */
+.ab__traits {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 var(--s8);
+}
+
+.ab__traits-header {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 16px;
+}
+
+.ab__traits-label {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.5);
+    white-space: nowrap;
+}
+
+.ab__traits-hr {
+    flex: 1;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+/* ── Single trait strip ── */
+.ab-trait {
+    display: grid;
+    grid-template-columns: 72px 52px 1fr auto;
+    gap: 24px;
+    align-items: center;
+    padding: 28px 0;
+    position: relative;
+    cursor: default;
+    transition: background 0.35s ease, padding-left 0.35s ease;
+    border-radius: 8px;
+}
+
+.ab-trait:hover {
+    background: rgba(255, 255, 255, 0.025);
+    padding-left: 20px;
+}
+
+/* separator line inside each row at the bottom */
+.ab-trait__line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* Big bold number */
+.ab-trait__num {
+    font-family: var(--font-mono);
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.2);
+    letter-spacing: 0.05em;
+    transition: color 0.3s ease;
+}
+
+.ab-trait:hover .ab-trait__num {
+    color: var(--accent-purple);
+}
+
+/* Icon */
+.ab-trait__icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    background: rgba(139, 92, 246, 0.08);
+    border: 1px solid rgba(139, 92, 246, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-purple);
+    flex-shrink: 0;
+    transition: all 0.35s ease;
+}
+
+.ab-trait:hover .ab-trait__icon {
+    background: rgba(139, 92, 246, 0.2);
+    border-color: rgba(139, 92, 246, 0.4);
+    color: #c4b5fd;
+    box-shadow: 0 0 24px rgba(139, 92, 246, 0.2);
+}
+
+/* Title */
+.ab-trait__title {
+    font-family: var(--font-sans);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.02em;
+}
+
+/* Description — RIGHT side, clearly readable */
+.ab-trait__desc {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 400;
+    max-width: 420px;
+    text-align: right;
+    transition: color 0.3s ease;
+}
+
+.ab-trait:hover .ab-trait__desc {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════ */
+@media (max-width: 900px) {
+    .ab__top-inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .ab__heading {
+        font-size: 3.5rem;
+    }
+
+    .ab-trait {
+        grid-template-columns: 52px 48px 1fr;
+    }
+
+    .ab-trait__desc {
+        display: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .ab__top {
+        padding: 100px var(--s6) 60px;
+    }
+
+    .ab-trait {
+        grid-template-columns: 44px 1fr;
+    }
+
+    .ab-trait__num {
+        display: none;
+    }
+}

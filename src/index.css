@@ -1,0 +1,156 @@
+/* ============================================================
+   DESIGN SYSTEM — Neeraj Kharde Portfolio
+   Theme: Deep black / techy / system architecture
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
+
+/* ---------- CSS Custom Properties ---------- */
+:root {
+  /* Background tiers */
+  --bg-base: #050508;
+  --bg-raised: #0b0b12;
+  --bg-surface: #111120;
+  --bg-overlay: #181830;
+
+  /* Accent palette — electric blue + cyan */
+  --accent-blue: #4f8ef7;
+  --accent-cyan: #00d4aa;
+  --accent-purple: #8b5cf6;
+  --accent-glow: rgba(79, 142, 247, 0.15);
+
+  /* Text */
+  --text-primary: #e8e8f4;
+  --text-secondary: #9494b0;
+  --text-muted: #4a4a66;
+  --text-code: #00d4aa;
+
+  /* Borders */
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border-normal: rgba(255, 255, 255, 0.12);
+  --border-accent: rgba(79, 142, 247, 0.4);
+
+  /* Typography */
+  --font-sans: 'Space Grotesk', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  /* Spacing scale */
+  --s1: 4px;
+  --s2: 8px;
+  --s3: 14px;
+  --s4: 18px;
+  --s5: 22px;
+  --s6: 28px;
+  --s8: 36px;
+  --s10: 48px;
+  --s12: 56px;
+  --s16: 72px;
+  --s20: 96px;
+
+  /* Radius */
+  --r-sm: 6px;
+  --r-md: 12px;
+  --r-lg: 20px;
+  --r-xl: 32px;
+  --r-full: 9999px;
+
+  /* Shadows */
+  --shadow-glow: 0 0 30px rgba(79, 142, 247, 0.2);
+  --shadow-card: 0 4px 32px rgba(0, 0, 0, 0.5);
+
+  /* Transitions */
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ---------- Reset ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-base);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--bg-overlay);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-blue);
+}
+
+/* ---------- Global utility classes ---------- */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--s8);
+}
+
+.mono {
+  font-family: var(--font-mono);
+}
+
+.accent {
+  color: var(--accent-blue);
+}
+
+.accent-cyan {
+  color: var(--accent-cyan);
+}
+
+/* ---------- Selection ---------- */
+::selection {
+  background: rgba(79, 142, 247, 0.3);
+  color: var(--text-primary);
+}
+
+/* ---------- Animated noise grain overlay ---------- */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  opacity: 0.12;
+  /* Greatly reduced to make it clean & elegant */
+}
+
+/* ---------- Global animations ---------- */
+@keyframes blink {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}

@@ -1,0 +1,199 @@
+/* ============================================================
+   NAVBAR — premium glass, Space Grotesk font
+   ============================================================ */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 0 var(--s8);
+    height: 68px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    /* Always-on glass */
+    background: rgba(5, 5, 12, 0.45);
+    backdrop-filter: blur(28px) saturate(160%);
+    -webkit-backdrop-filter: blur(28px) saturate(160%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+
+    /* Reflective shimmer on top edge */
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.06) inset,
+        0 1px 32px rgba(0, 0, 0, 0.4);
+
+    transition: background 0.45s var(--ease-smooth),
+        box-shadow 0.45s var(--ease-smooth),
+        border-color 0.45s var(--ease-smooth);
+}
+
+/* Deeper glass when scrolled */
+.navbar.scrolled {
+    background: rgba(5, 5, 12, 0.7);
+    backdrop-filter: blur(36px) saturate(180%);
+    -webkit-backdrop-filter: blur(36px) saturate(180%);
+    border-bottom: 1px solid rgba(79, 142, 247, 0.14);
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.08) inset,
+        0 4px 40px rgba(0, 0, 0, 0.55),
+        0 0 0 0.5px rgba(79, 142, 247, 0.08);
+}
+
+/* Iridescent colour band that fades left-to-right across the navbar top */
+.navbar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent 0%,
+            rgba(79, 142, 247, 0.50) 30%,
+            rgba(0, 212, 170, 0.40) 60%,
+            transparent 100%);
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+/* ---------- Logo / Name ---------- */
+.navbar__logo {
+    font-family: var(--font-sans);
+    /* Space Grotesk */
+    font-size: 1.55rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    text-decoration: none;
+    letter-spacing: -0.04em;
+    cursor: pointer;
+    user-select: none;
+    transition: opacity 0.2s ease;
+}
+
+.navbar__logo:hover {
+    opacity: 0.85;
+}
+
+/* ---------- Desktop Nav Links ---------- */
+.navbar__links {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+    list-style: none;
+}
+
+.navbar__link {
+    font-family: var(--font-sans);
+    /* Space Grotesk */
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    padding: 4px 0;
+    position: relative;
+    transition: color 0.2s var(--ease-smooth);
+    cursor: pointer;
+}
+
+/* Glowing underline */
+.navbar__link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan));
+    transition: width 0.28s var(--ease-smooth);
+    box-shadow: 0 0 6px var(--accent-cyan);
+}
+
+.navbar__link:hover {
+    color: var(--text-primary);
+}
+
+.navbar__link:hover::after {
+    width: 100%;
+}
+
+/* ---------- Burger (mobile) ---------- */
+.navbar__burger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: var(--s2);
+    background: none;
+    border: none;
+}
+
+.navbar__burger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--text-primary);
+    border-radius: 2px;
+    transition: transform 0.3s var(--ease-smooth), opacity 0.3s;
+}
+
+.navbar__burger.open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.navbar__burger.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.navbar__burger.open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ---------- Mobile drawer ---------- */
+.navbar__mobile-drawer {
+    position: fixed;
+    top: 68px;
+    left: 0;
+    right: 0;
+    background: rgba(5, 5, 12, 0.88);
+    backdrop-filter: blur(32px) saturate(160%);
+    -webkit-backdrop-filter: blur(32px) saturate(160%);
+    border-bottom: 1px solid rgba(79, 142, 247, 0.12);
+    padding: 28px var(--s8);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    z-index: 999;
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.5);
+}
+
+.navbar__mobile-link {
+    font-family: var(--font-sans);
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-decoration: none;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border-subtle);
+    cursor: pointer;
+    transition: color 0.2s;
+    letter-spacing: 0.01em;
+}
+
+.navbar__mobile-link:hover {
+    color: var(--text-primary);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+    .navbar__links {
+        display: none;
+    }
+
+    .navbar__burger {
+        display: flex;
+    }
+}

@@ -1,0 +1,226 @@
+/* ============================================================
+   FOOTER SECTION — Simple, Clean & Modern
+   ============================================================ */
+
+.ft {
+    position: relative;
+    z-index: 10;
+    padding: 80px var(--s8) 40px;
+    background: linear-gradient(180deg, transparent 0%, rgba(6, 6, 12, 0.95) 100%);
+    overflow: hidden;
+}
+
+.ft__inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+}
+
+/* ── Top Rule ── */
+.ft__rule-wrap {
+    width: 100%;
+}
+
+.ft__rule {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent 0%,
+            rgba(255, 255, 255, 0.12) 30%,
+            rgba(79, 142, 247, 0.4) 50%,
+            rgba(255, 255, 255, 0.12) 70%,
+            transparent 100%);
+}
+
+/* ── Main Footer Row ── */
+.ft__main {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 40px;
+    align-items: flex-start;
+}
+
+/* Brand Column */
+.ft__brand-col {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.ft__logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-sans);
+    font-size: 1.25rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: #ffffff;
+    cursor: pointer;
+    transition: opacity 0.25s ease;
+    width: fit-content;
+}
+
+.ft__logo:hover {
+    opacity: 0.85;
+}
+
+.ft__logo-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent-blue);
+    box-shadow: 0 0 10px var(--accent-blue);
+}
+
+.ft__tagline {
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.5);
+    max-width: 360px;
+    margin: 0;
+}
+
+/* Column Titles */
+.ft__col-title {
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 16px;
+    display: block;
+}
+
+/* Quick Navigation Links */
+.ft__links-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.ft__nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.ft__nav button {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.65);
+    font-family: var(--font-sans);
+    font-size: 0.92rem;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 0;
+    transition: color 0.25s ease, transform 0.25s ease;
+    text-align: left;
+}
+
+.ft__nav button:hover {
+    color: var(--accent-blue);
+    transform: translateX(4px);
+}
+
+/* Socials & Back to Top */
+.ft__social-col {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.ft__socials {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.ft__social-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.035);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.65);
+    transition: all 0.25s ease;
+}
+
+.ft__social-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--accent-blue);
+    color: #ffffff;
+    box-shadow: 0 4px 16px rgba(79, 142, 247, 0.25);
+    transform: translateY(-2px);
+}
+
+.ft__top-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.55);
+    font-family: var(--font-sans);
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    width: fit-content;
+    transition: all 0.25s ease;
+}
+
+.ft__top-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+}
+
+/* ── Bottom Bar ── */
+.ft__bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    font-family: var(--font-sans);
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.ft__built-with {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.ft__heart-icon {
+    color: #ef4444;
+}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════ */
+@media (max-width: 768px) {
+    .ft__main {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    .ft__bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+}

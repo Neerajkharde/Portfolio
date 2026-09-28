@@ -1,0 +1,339 @@
+/* ============================================================
+   TECH STACK SECTION — 3D Tilt, Rich Glassmorphic Cards & Pills
+   ============================================================ */
+
+.st {
+    position: relative;
+    z-index: 10;
+    padding: 120px var(--s8) 160px;
+    overflow: hidden;
+    perspective: 1200px;
+}
+
+/* ══════════════════════════════════════════
+   BACKGROUND WATERMARK & GRID
+══════════════════════════════════════════ */
+.st__bg-decorations {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.st__bg-word {
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font-sans);
+    font-size: clamp(8rem, 20vw, 17rem);
+    font-weight: 900;
+    letter-spacing: -0.05em;
+    background: linear-gradient(180deg,
+            rgba(255, 255, 255, 0.035) 0%,
+            transparent 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    white-space: nowrap;
+}
+
+.st__bg-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+        radial-gradient(circle at 50% 30%, rgba(79, 142, 247, 0.07) 0%, transparent 60%),
+        linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+    background-size: 100% 100%, 60px 60px, 60px 60px;
+    opacity: 0.8;
+}
+
+/* Ambient Particles */
+.st-particle {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(40px);
+    opacity: 0.25;
+    animation: particleFloat 12s ease-in-out infinite alternate;
+}
+
+.st-particle--1 {
+    top: 20%;
+    left: 10%;
+    width: 260px;
+    height: 260px;
+    background: rgba(56, 189, 248, 0.4);
+}
+
+.st-particle--2 {
+    bottom: 25%;
+    right: 12%;
+    width: 320px;
+    height: 320px;
+    background: rgba(139, 92, 246, 0.4);
+}
+
+.st-particle--3 {
+    top: 60%;
+    left: 45%;
+    width: 220px;
+    height: 220px;
+    background: rgba(16, 185, 129, 0.3);
+}
+
+@keyframes particleFloat {
+    0% {
+        transform: translateY(0) scale(1);
+    }
+
+    100% {
+        transform: translateY(-40px) scale(1.15);
+    }
+}
+
+/* ══════════════════════════════════════════
+   SECTION LAYOUT & HEADER
+══════════════════════════════════════════ */
+.st__inner {
+    position: relative;
+    z-index: 1;
+    max-width: 1080px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+}
+
+.st__heading-block {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.st__rule {
+    width: 100%;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.08);
+    transform-origin: left;
+}
+
+.st__heading-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.st__heading {
+    font-family: var(--font-sans);
+    font-size: clamp(3rem, 6vw, 5rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    color: var(--text-primary);
+    line-height: 1;
+}
+
+.st__sub {
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    color: var(--accent-blue);
+    font-weight: 500;
+    margin-top: 10px;
+    letter-spacing: -0.01em;
+}
+
+/* ══════════════════════════════════════════
+   4 CATEGORY CARDS GRID & 3D TILT
+══════════════════════════════════════════ */
+.st-four-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+    perspective: 1000px;
+}
+
+/* Always-styled category card */
+.st-cat-card {
+    position: relative;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 24px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    overflow: hidden;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    transform-style: preserve-3d;
+    transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+    transition: transform 0.15s ease-out, border-color 0.35s ease, box-shadow 0.35s ease, background 0.35s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.st-cat-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--cat-accent);
+    box-shadow:
+        0 20px 48px rgba(0, 0, 0, 0.6),
+        0 0 30px rgba(255, 255, 255, 0.05);
+}
+
+/* Dynamic Spotlight following cursor */
+.st-cat-card__spotlight {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle 240px at var(--mx, 50%) var(--my, 50%), rgba(255, 255, 255, 0.06), transparent 70%);
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.st-cat-card:hover .st-cat-card__spotlight {
+    opacity: 1;
+}
+
+/* Card Header */
+.st-cat-card__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    position: relative;
+    z-index: 2;
+}
+
+.st-cat-card__header-title {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.st-cat-card__badge {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--cat-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--cat-accent);
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.4);
+}
+
+.st-cat-card__title {
+    font-family: var(--font-sans);
+    font-size: 1.38rem;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: -0.02em;
+    margin: 0;
+}
+
+/* Pills Wrap & Individual Tech Pills */
+.st-cat-card__pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    position: relative;
+    z-index: 2;
+}
+
+.st-pill {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 18px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    cursor: pointer;
+    overflow: hidden;
+    transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+}
+
+.st-pill__glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, var(--item-color, var(--cat-accent)) 0%, transparent 70%);
+    opacity: 0.08;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.st-pill:hover {
+    background: rgba(255, 255, 255, 0.09);
+    border-color: var(--item-color, var(--cat-accent));
+    box-shadow: 0 0 18px var(--item-color, var(--cat-accent));
+}
+
+.st-pill:hover .st-pill__glow {
+    opacity: 0.25;
+}
+
+.st-pill__name {
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.01em;
+}
+
+/* Corner Cyber Accent Ticks */
+.st-corner {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-color: rgba(255, 255, 255, 0.2);
+    border-style: solid;
+    pointer-events: none;
+    transition: border-color 0.3s ease;
+}
+
+.st-cat-card:hover .st-corner {
+    border-color: var(--cat-accent);
+}
+
+.st-corner--tl {
+    top: 8px;
+    left: 8px;
+    border-width: 2px 0 0 2px;
+}
+
+.st-corner--tr {
+    top: 8px;
+    right: 8px;
+    border-width: 2px 2px 0 0;
+}
+
+.st-corner--bl {
+    bottom: 8px;
+    left: 8px;
+    border-width: 0 0 2px 2px;
+}
+
+.st-corner--br {
+    bottom: 8px;
+    right: 8px;
+    border-width: 0 2px 2px 0;
+}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════ */
+@media (max-width: 840px) {
+    .st-four-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .st-cat-card {
+        padding: 24px;
+        transform: none !important;
+    }
+}
